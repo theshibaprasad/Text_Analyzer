@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Text_Analyzer</title>
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+    <style>
+      .hide {
+        display: none;
+      }
+      
+    </style>
+  </head>
+  <body class="bg-dark">
+    <nav class="navbar navbar-expand-lg bg-dark text-light border-bottom">
+      <div class="container-fluid text-white">
+        <a class="navbar-brand text-white" href="#">TA</a>
+        <button
+          class="navbar-toggler bg-white"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon bg-white"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse text-white"
+          id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-light">
+            <li class="nav-item text-white">
+              <a class="nav-link active text-white" aria-current="page" href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Link</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- div container -->
+    <div class="container mt-3">
+      <h1 class="text-light">Text Analyzer</h1>
+      <form action="/analyze" method="post">
+        <div class="mb-3">
+          <textarea
+            name="text"
+            class="form-control bg-dark text-white"
+            id=""
+            cols="30"
+            rows="10"></textarea>
+        </div>
+        <div class="mb-3">
+          <select
+            name="action"
+            class="form-control bg-dark text-white"
+            id="toggleSelect"
+            onchange="toggleTextArea()">
+            <option value="type">Check the type of the string</option>
+            <option value="cntchr">Count Number of Character</option>
+            <option value="cntws">Count White Spaces</option>
+            <option value="ctpz">Capitalized the Text</option>
+            <option value="ctuc">Convert it to Upper Case</option>
+            <option value="ctlc">Convert it to Lower Case</option>
+            <option value="strp">Strip the input Text</option>
+            <option value="splt">Split the input Text</option>
+            <option value="rmsp">Remove white spaces in the Text</option>
+            <option value="titl">Titlecased the Text</option>
+            <option value="swap">Swapcase the Text</option>
+            <option value="stwt">Startswith Text</option>
+            <option value="enwt">Endswith Text</option>
+            <option value="find">Find the Text</option>
+            <option value="repl">Replace the Text</option>
+          </select>
+        </div>
+        <div class="hide mb-2" id="textAreaContainer">
+          <label id="label" class="text-light"></label>
+          <input
+            name="text2"
+            class="form-control bg-dark text-white"
+            id=""
+            placeholder="If you want to replace the text then enter target and new text separate with comma ',' e.g:- shiba, prasad" />
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn btn-danger">Analyze</button>
+        </div>
+      </form>
+      <div class="text-white">
+        <center>
+          <h4>OUTPUT</h4>
+          <b>{{input}}</b> <br />
+          <b>{{output}}</b>
+          <b style="color: red">{{Error}}</b>
+        </center>
+      </div>
+    </div>
+
+    <div
+      class="alert alert-info position-absolute bottom-0 m-0 w-100 rounded-0 text-center"
+      role="alert">
+      Developed by Shiba Prasad Swain in 2024
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+    <script>
+      function toggleTextArea() {
+        // Get the select element and the text area container
+        var select = document.getElementById("toggleSelect");
+        var textAreaContainer = document.getElementById("textAreaContainer");
+        var lebel = document.getElementById("label");
+        // Check the selected value and show/hide the text area accordingly
+        if (
+          select.value === "stwt" ||
+          select.value === "enwt" ||
+          select.value === "find"
+        ) {
+          textAreaContainer.classList.remove("hide");
+          label.innerHTML = "Enter the text to perform this command";
+        } else if (select.value === "repl") {
+          textAreaContainer.classList.remove("hide");
+          label.innerHTML = "If you want to replace the text then enter target and new text separate with comma '( , )' e.g:- shiba, prasad";
+        } else {
+          textAreaContainer.classList.add("hide");
+        }
+      }
+    </script>
+  </body>
+</html>
